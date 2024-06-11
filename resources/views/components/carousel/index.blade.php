@@ -1,66 +1,34 @@
-<div x-data="carouselData()" x-init="init()" class="relative w-full max-w-xs" role="region" aria-roledescription="carousel">
+@props([
+    'loop' => 'true',
+    'orientation' => 'horizontal'
+])
+
+@php
+$options = [
+    'loop' => $loop == 'true' ? true : false,
+    'duration' => 20,
+    'axis' => $orientation == 'vertical' ? 'y' : 'x'
+];
+@endphp
+<div x-data="carouselData()" x-init="init(@js($options))" class="relative w-full max-w-xs" role="region" aria-roledescription="carousel">
     <!-- Slides Viewport -->
     <div x-ref="viewport" class="overflow-hidden">
         <!-- Container -->
-        <div class="flex -ml-4">
+        <div @class([ 'flex', 'flex-col h-80' => $orientation == 'vertical' ])>
             <!-- Slides -->
-            <div class="min-w-0 shrink-0 grow-0 basis-full pl-4">
-                <!-- Slide Frame -->
-                <div class="p-1">
-                    <div class="rounded-lg border border-white/10 bg-gray-950 text-white shadow-sm">
-                        <!-- Slide Content -->
-                        <div class="flex items-center justify-center aspect-square p-6">
-                            <span class="text-4xl font-semibold">
-                                1
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="min-w-0 shrink-0 grow-0 basis-full pl-4">
-                <!-- Slide Frame -->
-                <div class="p-1">
-                    <div class="rounded-lg border border-white/10 bg-gray-950 text-white shadow-sm">
-                        <!-- Slide Content -->
-                        <div class="flex items-center justify-center aspect-square p-6">
-                            <span class="text-4xl font-semibold">
-                                2
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="min-w-0 shrink-0 grow-0 basis-full pl-4">
-                <!-- Slide Frame -->
-                <div class="p-1">
-                    <div class="rounded-lg border border-white/10 bg-gray-950 text-white shadow-sm">
-                        <!-- Slide Content -->
-                        <div class="flex items-center justify-center aspect-square p-6">
-                            <span class="text-4xl font-semibold">
-                                3
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{ $slot }}
         </div>
     </div>
-    <button @click="api.scrollPrev()" type="button" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium text-white ring-offset-gray-950
-            transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/10
-            focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-white/10 bg-gray-950
-            hover:bg-white/10 absolute size-8 rounded-full -left-12 top-1/2 -translate-y-1/2">
+    <x-carousel::carousel.buttons.previous>
         <svg class="lucide lucide-arrow-left size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m12 19-7-7 7-7" />
             <path d="M19 12H5" />
         </svg>
-    </button>
-    <button @click="api.scrollNext()" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium text-white ring-offset-gray-950
-            transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/10
-            focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-white/10 bg-gray-950
-            hover:bg-white/10 absolute size-8 rounded-full -right-12 top-1/2 -translate-y-1/2" type="button">
+    </x-carousel::carousel.buttons.previous>
+    <x-carousel::carousel.buttons.next>
         <svg class="lucide lucide-arrow-right size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14" />
             <path d="m12 5 7 7-7 7" />
         </svg>
-    </button>
+    </x-carousel::carousel.buttons.next>
 </div>
