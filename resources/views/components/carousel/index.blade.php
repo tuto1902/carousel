@@ -1,6 +1,8 @@
 @props([
     'loop' => 'true',
-    'orientation' => 'horizontal'
+    'orientation' => 'horizontal',
+    'autoplay' => 'false',
+    'delay' => 4000
 ])
 
 @php
@@ -9,8 +11,15 @@ $options = [
     'duration' => 20,
     'axis' => $orientation == 'vertical' ? 'y' : 'x'
 ];
+
+$autoplay = $autoplay == 'false' ? $autoplay : 'true';
+$autoPlayOptions = [
+    'delay' => $delay,
+    'stopOnInteraction' => false,
+    'stopOnMouseEnter' => true
+];
 @endphp
-<div x-data="carouselData()" x-init="init(@js($options))" class="relative w-full max-w-xs" role="region" aria-roledescription="carousel">
+<div x-data="carouselData()" x-init="init(@js($options)@if($autoplay == 'true'), {{ $autoplay }}, @js($autoPlayOptions)@endif)" class="relative w-full max-w-xs" role="region" aria-roledescription="carousel">
     <!-- Slides Viewport -->
     <div x-ref="viewport" class="overflow-hidden">
         <!-- Container -->
