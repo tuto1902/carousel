@@ -2,7 +2,8 @@
     'loop' => 'true',
     'orientation' => 'horizontal',
     'autoplay' => 'false',
-    'delay' => 4000
+    'delay' => 4000,
+    'size' => 'size-96'
 ])
 
 @php
@@ -22,7 +23,7 @@ $autoPlayOptions = [
     <!-- Slides Viewport -->
     <div x-ref="viewport" class="overflow-hidden">
         <!-- Container -->
-        <div @class([ 'flex size-80', 'flex-col' => $orientation == 'vertical' ])>
+        <div @class([ "flex $size", 'flex-col' => $orientation == 'vertical' ])>
             <!-- Slides -->
             {{ $slot }}
         </div>
