@@ -1,9 +1,12 @@
 # Embla carousel wrapper for Laravel
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/tuto1902/carousel.svg?style=flat-square)](https://packagist.org/packages/tuto1902/carousel)
+[![Total Downloads](https://img.shields.io/packagist/dt/tuto1902/carousel.svg?style=flat-square)](https://packagist.org/packages/tuto1902/carousel)
+
 This pacakge provides a blade component wrapper for the Embla Carousel component. It allows you to incorporate a carousel component on any Laravel project by using a simple blade component and providing configuration properties to fit your specific needs.
 
 ## Requirements
-- PHP 8.1+
+- PHP 8.2+
 - Laravel v10.0+
 - TailwindCSS 3.4+
 
@@ -13,6 +16,34 @@ You can install the package via composer:
 
 ```bash
 composer require tuto1902/carousel
+```
+
+Add the following line to `resources\js\app.js`
+
+```js
+import './../../vendor/tuto1902/carousel/resources/dist/carousel'
+```
+
+Add the following line to `tailwind.config.js` inside the content section
+
+```js
+export default {
+  presets: [],
+  content: [
+    ...
++    './vendor/tuto1902/carousel/resources/**/*.blade.php',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Then, compile all your assets using Vite
+
+```bash
+npm run build
 ```
 
 Optionally, you can publish the views using
@@ -51,6 +82,7 @@ Replace the content of `app-layout.blade.php` with the commont HTML boilerplate 
     </head>
     <body class="dark bg-white dark:bg-gray-950">
         {{$slot}}
+    @vite('resources/js/app.js')
     </body>
 </html>
 ```
@@ -75,6 +107,24 @@ You can combine all components provided in this package to assemble your own car
     </x-carousel::carousel>
 </x-app-layout>
 ```
+
+You can include any of the following parameters to further customize the looks and feel of the carousel. For example, using the `loop` parameter, the carousel will loop around after reaching the last/first slide.
+
+```html
+<x-carousel::carousel loop="true">
+    ...
+</x-carousel::carousel>
+```
+
+Here's a list of all available properties
+
+| Property |  Accepted Values | Description |
+|----------|------------------|-------------|
+| loop | true/false | Loop back whean reaching the last/first slide |
+| orientation | horizontal/vertical | Changes the carousel orientation |
+| autoplay | true/false | When enabled, slides will autoplay after a delay |
+| delay | number | Controls the delay of the carousel autoplay in miliseconds. Default is 4000 (4 seconds) |
+| size | string | Controls the size of the carousel. You can use any valid Tailwind CSS class. Default value is `size-96`. See [Tailwind CSS Documentation](https://tailwindcss.com/docs/size) for all possible values. |
 
 ## Changelog
 
