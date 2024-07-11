@@ -18,7 +18,7 @@ You can install the package via composer:
 composer require tuto1902/carousel
 ```
 
-Add the following line to `resources\js\app.js`
+Add the following line to `resources\js\app.js`. Make sure to add this line at the beginning of the file.
 
 ```js
 import './../../vendor/tuto1902/carousel/resources/dist/carousel'
@@ -70,7 +70,7 @@ This will create two files:
 - app\View\Components\AppLayout.php
 - resources\views\components\app-layout.php
 
-Replace the content of `app-layout.blade.php` with the commont HTML boilerplate to be shared among all views. Here's an example of a simple layout file.
+Replace the content of `app-layout.blade.php` with the common HTML boilerplate to be shared among all views. Here's an example of a simple layout file.
 
 ```html
 <!doctype html>
