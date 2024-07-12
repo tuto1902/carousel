@@ -109,6 +109,14 @@ You can combine all components provided in this package to assemble your own car
 </x-app-layout>
 ```
 
+Finally, create a new route to see your new carousel in action.
+
+```php
+use Illuminate\Support\Facades\Route;
+
+Route::view('/', 'my-carousel-page');
+```
+
 You can include any of the following parameters to further customize the looks and feel of the carousel. For example, using the `loop` parameter, the carousel will loop around after reaching the last/first slide.
 
 ```html
