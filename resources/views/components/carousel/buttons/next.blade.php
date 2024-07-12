@@ -1,5 +1,7 @@
 @aware(['orientation'])
-
+@php
+$orientation = $orientation ?? 'horizontal';
+@endphp
 <x-carousel::carousel.buttons.base
     @click="api.scrollNext()"
     @class([

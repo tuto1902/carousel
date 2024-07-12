@@ -9,6 +9,7 @@ This pacakge provides a blade component wrapper for the Embla Carousel component
 - PHP 8.2+
 - Laravel v10.0+
 - TailwindCSS 3.4+
+- AlpineJS 3.14+
 
 ## Installation
 
@@ -18,7 +19,7 @@ You can install the package via composer:
 composer require tuto1902/carousel
 ```
 
-Add the following line to `resources\js\app.js`. Make sure to add this line at the beginning of the file.
+Add the following line to `resources\js\app.js`. Make sure to add this line at the beginning of the file, or at least before AlpineJS is initialized.
 
 ```js
 import './../../vendor/tuto1902/carousel/resources/dist/carousel'
@@ -26,7 +27,7 @@ import './../../vendor/tuto1902/carousel/resources/dist/carousel'
 
 Add the following line to `tailwind.config.js` inside the content section
 
-```js
+```diff
 export default {
   presets: [],
   content: [
