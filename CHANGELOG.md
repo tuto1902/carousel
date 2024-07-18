@@ -2,6 +2,10 @@
 
 All notable changes to `carousel` will be documented in this file.
 
+## v1.0.3 - 2024-07-18
+
+- Adds the option to increase or decrease the scroll duration of the carousel
+
 ## Button Colors - 2024-07-15
 
 - Reduced button colors to just whites and grays
