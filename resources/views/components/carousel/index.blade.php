@@ -3,13 +3,16 @@
     'orientation' => 'horizontal',
     'autoplay' => 'false',
     'delay' => 4000,
-    'size' => 'size-96'
+    'size' => 'size-96',
+    'duration' => 20
 ])
 
 @php
+// Clamp duration between 20 and 60
+$duration = Illuminate\Support\Number::clamp($duration, 20, 60);
 $options = [
     'loop' => $loop == 'true' ? true : false,
-    'duration' => 20,
+    'duration' => $duration,
     'axis' => $orientation == 'vertical' ? 'y' : 'x'
 ];
 $autoplay = $autoplay == 'false' ? $autoplay : 'true';
